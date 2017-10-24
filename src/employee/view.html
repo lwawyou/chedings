@@ -1,0 +1,13 @@
+<template>
+    <ul class="w3-ul w3-card-4 frame-limit-50">
+      <li class="w3-padding-16 w3-hover-red" repeat.for="user of employee">
+        <span click.delegate="" class="w3-right">
+            <button click.delegate="editEmployee(user.id)">Edit</button>
+            <button click.delegate="deleteEmployee(user.id)">Delete</button>
+        </span>
+        <img src="${checkProfileImage(user)}" class="w3-left w3-margin-right" style="width:50px;height:50px">
+        <span class="w3-large">${user.name}</span><br>
+        <span>${user.type}</span>
+      </li>
+    </ul>
+</template> 

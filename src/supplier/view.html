@@ -1,0 +1,13 @@
+<template>
+    <ul class="w3-ul w3-card-4 frame-limit-50">
+      <li class="w3-padding-16 w3-hover-gray" repeat.for="info of supplier">
+        <span click.delegate="" class="w3-right">
+            <button click.delegate="editSupplier(info.id)">Edit</button>
+            <button click.delegate="viewProduct(info.id)">Products</button>
+            <button click.delegate="deleteSupplier(info.id)">Delete</button>
+        </span>
+        <span class="w3-large">${info.company}</span><br>
+        <span>Address: ${info.address} | Phone #: ${info.phone} </span>
+      </li>
+    </ul>
+</template> 

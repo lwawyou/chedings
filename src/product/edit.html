@@ -1,0 +1,31 @@
+<template>
+    <require from="../ui-helper/php-format"></require>
+    <div class="w3-padding-16 frame-limit-50">
+        <form class="w3-container" submit.delegate="save()">
+            <img id="imgProductPreview" alt="product image" src="${product.pic}" width="100" height="100" />
+            <input type='file' id="productImage" accept=".png,.jpg,.jpeg" style="border:none;" change.delegate="upload()"/>
+            
+            <p>
+            <label class="w3-text-black">Description</label>
+            <input class="w3-input w3-text-black" type="text" value.bind="product.description" disabled></p>
+            <p>
+            <label class="w3-text-black">Cost</label>
+            <input class="w3-input w3-text-black" type="text" value.bind="product.cost | phpFormat" disabled></p>
+            <p>
+            <label class="w3-text-black">Discount(optional)</label>
+            <input class="w3-input w3-text-black" type="text" value.bind="product.discount"></p>
+            <p>
+                <label class="w3-text-black">Quantity</label>
+                <input class="w3-input w3-text-black" type="text" value.bind="product.quantity" disabled>
+            </p>
+            <p>
+            <label class="w3-text-black">Name of supplier</label>
+            <input class="w3-input w3-text-black" type="text" value.bind="product.supplier_id" disabled></p>
+            
+            <p>
+            <label class="w3-text-black">Expiration Date</label>
+            <input class="w3-input w3-text-black" type="date" value.bind="product.expire_date"></p>
+            <button class="w3-btn w3-blue-grey">Update</button>
+        </form>
+    </div>
+</template>

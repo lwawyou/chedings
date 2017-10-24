@@ -1,0 +1,30 @@
+<template>
+     <div class="w3-padding-16">
+      <p>
+          <label class="w3-text-black">Start Date</label>
+          <input class="w3-input w3-text-black" type="date" value.bind="startdate">
+      </p>
+      <p>
+          <label class="w3-text-black">End Date</label>
+          <input class="w3-input w3-text-black" type="date" value.bind="enddate">
+      </p>
+      <p>
+          <select class="w3-input w3-text-black" value.bind="selectedreports">
+              <option>Select a category to be printed</option>
+              <option value.bind="1">Deleted Products</option>
+              <option value.bind="2">Deleted Employee</option>
+              <option value.bind="3">Sales Report</option>
+          </select>
+      </p>
+      <button click.delegate="print()" class="w3-large">
+        <i class="fa fa-print"></i>Print
+      </button>
+      <button click.delegate="viewReport()" class="w3-large">
+        <i class="fa fa-print"></i>View Report
+      </button>
+    </div> 
+  </div>
+
+  <div style="display:none;"><compose view-model="./print" id="reportprintpage"></compose></div>
+  <iframe id="reportprint" name="reportprint" style="visibility:hidden;position:fixed;z-index:-1"></iframe>
+</template>

@@ -1,0 +1,19 @@
+<template>
+    <div class="w3-padding-16 frame-limit-50">
+        <form class="w3-container" submit.delegate="save()">
+
+            <p>
+            <label class="w3-text-black">Company Name</label>
+            <input class="w3-input w3-text-black" type="text" value.bind="supplier.company"></p>
+            <p>
+            <label class="w3-text-black">Contact Name</label>
+            <input class="w3-input w3-text-black" type="text" value.bind="supplier.contact_name"></p>
+            <p>
+            <label class="w3-text-black">Address</label>
+            <input class="w3-input w3-text-black" type="text" value.bind="supplier.address"></p>
+            <p><label class="w3-text-black">Phone #</label>
+            <input class="w3-input w3-text-black" type="text" value.bind="supplier.phone"></p>
+            <button class="w3-btn w3-blue-grey">Update</button>
+        </form>
+    </div>
+</template>

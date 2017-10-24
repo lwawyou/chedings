@@ -1,0 +1,21 @@
+<template>
+    <div class="w3-padding-16 frame-limit-50">
+        <ul class="w3-ul w3-card-4 frame-limit-50">
+        <li class="w3-padding-16 w3-hover-gray" repeat.for="items of productArr">
+            <span click.delegate="" class="w3-right">
+                <button click.delegate="editProduct($index)">Edit</button>
+                <button click.delegate="deleteProduct(items)">Delete</button>
+            </span>
+            <img src="${items.pic}" class="w3-left w3-margin-right" id="imgProductPreview${$index}" style="width:50px;height:50px">
+            <span class="w3-large"><span class="hide${$index}">${items.description}<br><br></span>
+                <span class=" show${$index}" style="display:none;font-size:12px;">
+                    <input type='file' id="productImage${$index}" accept=".png,.jpg,.jpeg" style="border:none;" change.delegate="upload($index)"/>
+                    <input class="w3-input w3-text-black" type="text" value.bind="items.description">
+                    <button click.delegate="updateProduct(items.id)">Update</button>
+                    <button click.delegate="revert($index)">Back</button>
+                </span>
+            </span>
+        </li>
+        </ul>
+    </div>
+</template>

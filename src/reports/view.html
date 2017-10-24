@@ -1,0 +1,109 @@
+<template>
+    <require from="../ui-helper/php-format"></require>
+    <div class="report-button">
+        <button class="w3-large" click.delegate="back()">Back</button>
+        <button class="w3-large" onclick="window.print();">Print</button>
+    </div>
+    <!-- sales report -->
+    <div class="report-page" repeat.for="report of table.calendar" if.bind="selectedreports == '3'">
+        <div style="text-align: center;">
+            <h2>Sales Report For ${table.month[$index]}</h2>
+        </div>
+        <table class="report-month">
+            <thead class="report-header">
+                <tr>
+                    <td>Sun</td>
+                    <td>Mon</td>
+                    <td>Tue</td>
+                    <td>Wed</td>
+                    <td>Thu</td>
+                    <td>Fri</td>
+                    <td>Sat</td>
+                    <td>Total</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr repeat.for="tr of report">
+                    <td repeat.for="td of tr">${td}</td>
+                </tr>
+                <tr if.bind="report.length>0">
+                    <td colspan="8" style="text-align: center">Grand Total: ${table.grandtotal[$index]}</td>
+                </tr>
+                <tr if.bind="report.length==0">
+                    <td colspan="8" style="text-align: center">No Reports</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- deleted reports -->
+    <div class="report-page" if.bind="selectedreports == '2'">
+        <div style="text-align: center;">
+            <h2>Deleted Employees Report</h2>
+        </div>
+        <table class="report-normal">
+            <thead>
+                <tr>
+                    <td>#</td>
+                    <td>Username</td>
+                    <td>First Name</td>
+                    <td>Middle Name</td>
+                    <td>Last Name</td>
+                    <td>Date Deleted</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr repeat.for="items of reports.products">
+                    <td>${($index+1)}</td>
+                    <td>${items.username}</td>
+                    <td>${items.firstname}</td>
+                    <td>${items.middlename}</td>
+                    <td>${items.lastname}</td>
+                    <td>${items.date_deleted}</td>
+                </tr>
+
+                <tr if.bind="reports.products.length==0">
+                    <td colspan="9" style="text-align:center">No data</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- product deleted reports -->
+    <div class="report-page" if.bind="selectedreports == '1'">
+        <div style="text-align: center;">
+            <h2>Deleted Product Report</h2>
+        </div>
+        <table class="report-normal">
+            <thead>
+                <tr>
+                    <td>#</td>
+                    <td>Pin #</td>
+                    <td>Description</td>
+                    <td>Price</td>
+                    <td>Quantity</td>
+                    <td>Expire Date</td>
+                    <td>Date Added</td>
+                    <td>Supplier</td>
+                    <td>Date Deleted</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr repeat.for="items of reports.products">
+                    <td>${($index+1)}</td>
+                    <td>${items.pin_number}</td>
+                    <td>${items.description}</td>
+                    <td>${items.cost | phpFormat}</td>
+                    <td>${items.quantity}</td>
+                    <td>${items.expire_date}</td>
+                    <td>${items.date_added}</td>
+                    <td>${items.supplier_id}</td>
+                    <td>${items.date_deleted}</td>
+                </tr>
+
+                <tr if.bind="reports.products.length==0">
+                    <td colspan="9" style="text-align:center">No data</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</template>

@@ -1,0 +1,102 @@
+<template>
+<require from="../ui-helper/php-format"></require>
+<require from="../ui-helper/date-format"></require>
+<style>
+    .print{
+        margin:0;
+        text-align:center;
+    }
+    .print table{
+        width:100%;
+        border-collapse: collapse;
+    }
+    .print table thead td{
+        text-align:center;
+    }
+    .print table td{
+        border:1px solid;
+        padding:10px;
+    }
+    .print table tr{
+        margin:0;
+    }
+    @page{
+        size: landscape;
+    }
+</style>
+<div class="print">
+    <h2>${reports.title} Report</h2>
+    <table if.bind="selectedreports == '1'">
+        <thead>
+            <tr>
+                <td>#</td>
+                <td>Pin #</td>
+                <td>Description</td>
+                <td>Price</td>
+                <td>Quantity</td>
+                <td>Expire Date</td>
+                <td>Date Added</td>
+                <td>Supplier</td>
+                <td>Date Deleted</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr repeat.for="items of reports.products">
+                <td>${($index+1)}</td>
+                <td>${items.pin_number}</td>
+                <td>${items.description}</td>
+                <td>${items.cost | phpFormat}</td>
+                <td>${items.quantity}</td>
+                <td>${items.expire_date}</td>
+                <td>${items.date_added}</td>
+                <td>${items.supplier_id}</td>
+                <td>${items.date_deleted}</td>
+            </tr>
+            
+            <tr if.bind="reports.products.length==0"><td colspan="9" style="text-align:center">No data</td></tr>
+        </tbody>
+    </table>
+
+    <table if.bind="selectedreports == '2'">
+            <thead>
+                <tr>
+                    <td>#</td>
+                    <td>Username</td>
+                    <td>First Name</td>
+                    <td>Middle Name</td>
+                    <td>Last Name</td>
+                    <td>Date Deleted</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr repeat.for="items of reports.products">
+                    <td>${($index+1)}</td>
+                    <td>${items.username}</td>
+                    <td>${items.firstname}</td>
+                    <td>${items.middlename}</td>
+                    <td>${items.lastname}</td>
+                    <td>${items.date_deleted}</td>
+                </tr>
+                
+                <tr if.bind="reports.products.length==0"><td colspan="9" style="text-align:center">No data</td></tr>
+            </tbody>
+        </table>
+    <table if.bind="selectedreports == '3'">
+            <thead>
+                <tr>
+                    <td>#</td>
+                    <td>Sale Date</td>
+                    <td>Sales</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr repeat.for="items of reports.products">
+                    <td>${($index+1)}</td>
+                    <td>${items.saledate | dateFormat}</td>
+                    <td>${items.sales | phpFormat}</td>
+                </tr>
+                
+                <tr if.bind="reports.products.length==0"><td colspan="9" style="text-align:center">No data</td></tr>
+            </tbody>
+    </table>
+</div>

@@ -1,0 +1,139 @@
+<template>
+<require from="../resources/css/w3.css"></require>
+<require from="../ui-helper/php-format"></require>
+<!-- Page Container -->
+<div class="w3-content w3-margin-top" style="max-width:1400px;">
+
+  <!-- The Grid -->
+  <div class="w3-row-padding">
+  
+    <!-- Left Column -->
+    <div class="w3-third">
+    
+      <div class="w3-white w3-text-grey w3-card-4">
+        <div class="w3-container">
+          
+          <p class="w3-large"><b><i class="fa fa-shopping-basket fa-fw w3-margin-right w3-text-red"></i>Transaction</b></p>
+          <p>
+            <div class="ui-widget">
+            <label class="w3-text-black">Product No</label>
+            <input class="w3-input w3-text-black" type="text" value.bind="order.productno" id="productnocompleter" change.delegate="loadProductInfo()">
+            </div>
+          </p>
+            <p>
+            <label class="w3-text-black">Description</label>
+            <input class="w3-input w3-text-black" type="text" value.bind="product.description" disabled></p>
+            <p>
+            <label class="w3-text-black">Price</label>
+            <input class="w3-input w3-text-black" type="text" value.bind="product.cost | phpFormat" disabled></p>
+            <p>
+                <label class="w3-text-black">Quantity</label>
+                <input class="w3-input w3-text-black" type="number" value.bind="product.quantity">
+            </p>
+            <p>
+              <label class="w3-text-black">Discount</label>
+              <input class="w3-input w3-text-black" type="text" value.bind="product.discount | phpFormat" disabled>
+          </p>
+            <p>
+            <label class="w3-text-black">Name of supplier</label>
+            <input class="w3-input w3-text-black" type="text" value.bind="product.supplier_id" disabled></p>
+            <br>
+        </div>
+      </div><br>
+
+    <!-- End Left Column -->
+    </div>
+
+    <!-- Right Column -->
+    <div class="w3-twothird">
+
+      <div class="w3-container w3-card-2 w3-white" style="height:350px;">
+        <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-bars fa-fw w3-margin-right w3-xxlarge w3-text-red"></i>Items</h2>
+        <div class="w3-container w3-margin-bottom" style="overflow-y: auto;height: 235px;">
+          <table class="w3-table w3-striped w3-border">
+            <thead><tr>
+              <th>Product #</th>
+              <th>Description</th>
+              <th>Quantity</th>
+              <th>Discount</th>
+              <th>Price</th>
+              <th>Action</th>
+            </tr></thead>
+            <tbody><tr repeat.for="items of order.purchase">
+              <td>${items.pin_number}</td>
+              <td>${items.description}</td>
+              <td>${items.quantity}</td>
+              <td>${items.discount | phpFormat}</td>
+              <td>${items.cost | phpFormat}</td>
+              <td><button class="w3-button w3-red w3-tiny" click.delegate="removeOrder($index)">x</button></td>
+            </tr></tbody>
+          </table>
+          <br>
+        </div>
+      </div>
+      <div class="w3-third w3-margin-top">
+        <div class="w3-white w3-text-grey w3-card-4">
+              <div class="w3-container">
+                <h3>Total Amount</h3>
+                <h2 style="text-align:center;">${totalAmount | phpFormat}</h2>
+                <hr>
+              </div>
+        </div>
+      </div> <!-- end of total amount box -->
+      <div class="w3-third w3-margin-left w3-margin-top w3-margin-right">
+          <div class="w3-white w3-text-grey w3-card-4" style="height: 142px;">
+                <div class="w3-container">
+                  <p>
+                    <b><i class="fa fa-money fa-fw w3-margin-right w3-text-red"></i>Enter Cash</b>
+                    <h3><input class="w3-input w3-text-black" type="text" value.bind="order.cash">
+                  </h3></p>
+                  <br> 
+                </div>
+          </div><!--  end of enter cash box -->
+      </div>
+    <div class="w3-rest w3-margin-left w3-margin-top">
+        <div class="w3-white w3-text-grey w3-card-4" style="height: 142px;">
+              <div class="w3-container">
+                <p><button class="w3-button w3-block w3-teal" click.delegate="cashIn()">Confirm</button></p>
+                <p><button class="w3-button w3-block w3-red" click.delegate="clear()">Clear</button></p>
+              </div>
+        </div><!--  end of confirm button -->
+    </div>
+  
+    
+  <!-- End Grid -->
+  </div> <!-- End Right Column -->
+  <div class="w3-row-padding">
+    
+  </div>
+  
+  <div style="display:none;"><compose view-model="./receipt" id="receiptpage"></compose></div>
+  <iframe id="receiptprint" name="receiptiframe" style="visibility:hidden;position:fixed;z-index:-1">
+  </iframe>
+  <!-- End Page Container -->
+</div>
+</div>
+<div id="id01" class="w3-modal">
+  <div class="w3-modal-content w3-animate-top">
+
+    <header class="w3-container w3-red"> 
+      <span onclick="document.getElementById('id01').style.display='none'" 
+      class="w3-button w3-display-topright">&times;</span>
+      <h3>Receipt</h3>
+    </header>
+
+    <div class="w3-container">
+      <h2>Change</h2>
+      <p>
+        ${order.change | phpFormat}
+      </p>
+      <!-- <compose view-model="${contenturl}"></compose> -->
+    </div>
+
+  </div>
+</div>
+<footer class="w3-container w3-red w3-center w3-margin-top" style="width:100%;bottom: 0;position: fixed;">
+  <p>Find me on social media.</p>
+  <p>Powered by <a href="http://chedings.com/" target="_blank">Chedings CO.</a></p>
+</footer>
+</template>

@@ -1,0 +1,101 @@
+<template>
+<require from="../resources/css/w3.css"></require>
+<!-- Page Container -->
+<div class="w3-content w3-margin-top" style="max-width:1400px;">
+
+  <!-- The Grid -->
+  <div class="w3-row-padding">
+  
+    <!-- Left Column -->
+    <div class="w3-third">
+    
+      <div class="w3-white w3-text-grey w3-card-4">
+        <div class="w3-display-container" click.delegate="openUserInfo()">
+          <img src="${user.pic}" style="width:100%" alt="Avatar">
+          <div class="w3-display-bottomleft w3-container w3-text-pink">
+            <h2 style="text-shadow: 0 0 15px white;">${user.name}</h2>
+          </div>
+        </div>
+        <div class="w3-container">
+          <p><i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-pink"></i>${user.description}</p>
+          <p><i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-pink"></i>Iligan City, Philippines</p>
+          <p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-pink"></i>${user.username}</p>
+          <p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-pink"></i>1224435534</p>
+          <p><a href click.delegate="logout()"><i class="fa fa-sign-out fa-fw w3-margin-right w3-large w3-text-pink"></i>Logout</a></p>
+          <hr>
+
+          <p class="w3-large"><b><i class="fa fa-shopping-basket fa-fw w3-margin-right w3-text-pink"></i>Stocks</b></p>
+          <div style="overflow-y:auto;height:300px;">
+            <div repeat.for="item of stocks">
+              <p>${item.description}</p>
+              <div class="w3-light-grey w3-round-xlarge w3-small">
+                <div class="w3-container w3-center w3-round-xlarge w3-pink" css.bind="{width: item.percentage}">${item.percentage}</div>
+              </div>
+            </div>
+          </div>
+          <br>
+          <br>
+        </div>
+      </div><br>
+
+    <!-- End Left Column -->
+    </div>
+
+    <!-- Right Column -->
+    <div class="w3-twothird">
+    
+      <div class="w3-container w3-card-2 w3-white w3-margin-bottom">
+        <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-info fa-fw w3-margin-right w3-xxlarge w3-text-pink"></i>About</h2>
+        <div class="w3-container">
+          <h5 class="w3-opacity"><b>CHEDING'S PEANUTS, INC. FOOD PROCESSING</b></h5>
+          <p>&nbsp;Cheding’s Peanuts store has been in Iligan City for decades. Tourists and travelers flock the store for its numerous delicacies to take home to family and friends. Cheding’s Peanuts peak season is on City Fiesta time (September), Christmas Season and the summer months. These packs come in different sizes, 1 kilo, ½ kilo, 370 grams, 50 grams, ¼ kilo and 200 grams foil pack. Cheding’s bestseller is ¼ kilo pack at P42.00.</p>
+          <p>&nbsp;For forty-seven (47) years, the business remains steadfast in producing quality peanut products for the Filipinos here and abroad as well as with the other nationalities who could taste the peanuts.</p>
+          <p>&nbsp;A pinch of love like salt, and keeping faith with tradition made for the success of Cheding's Peanuts, THE ORIGINAL ILIGAN' S PRIDE, "NAG-IISANG PASALUBONG NG ILIGAN".</p>
+          <hr>
+        </div>
+      </div>
+
+      <div class="w3-container w3-card-2 w3-white">
+        <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-bars fa-fw w3-margin-right w3-xxlarge w3-text-pink"></i>Dashboard</h2>
+        <div class="w3-container">
+          <div repeat.for="item of dashboard" class="w3-panel w3-pink" click.delegate="triggerDashboardButton(item)">
+              <p>${item.name}</p>
+          </div>
+          </div>
+        </div>
+      </div>
+
+    <!-- End Right Column -->
+    </div>
+    
+  <!-- End Grid -->
+  </div>
+  
+  <!-- End Page Container -->
+</div>
+<div id="id01" class="w3-modal">
+  <div class="w3-modal-content w3-animate-top">
+
+    <header class="w3-container w3-pink"> 
+      <span onclick="document.getElementById('id01').style.display='none'" 
+      class="w3-button w3-display-topright">&times;</span>
+      <h3>${contentheader}</h3>
+    </header>
+
+    <div class="w3-container">
+      <compose view-model="${contenturl}"></compose>
+    </div>
+
+  </div>
+</div>
+<footer class="w3-container w3-pink w3-center w3-margin-top">
+  <p>Find me on social media.</p>
+  <i class="fa fa-facebook-official w3-hover-opacity"></i>
+  <i class="fa fa-instagram w3-hover-opacity"></i>
+  <i class="fa fa-snapchat w3-hover-opacity"></i>
+  <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+  <i class="fa fa-twitter w3-hover-opacity"></i>
+  <i class="fa fa-linkedin w3-hover-opacity"></i>
+  <p>Powered by <a href="http://chedings.com/" target="_blank">Chedings CO.</a></p>
+</footer>
+</template>

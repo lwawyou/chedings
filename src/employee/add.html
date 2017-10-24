@@ -1,0 +1,26 @@
+<template>
+    <div class="w3-padding-16 frame-limit-50">
+        <form class="w3-container" submit.delegate="register()">
+
+            <p>
+            <label class="w3-text-red">First Name</label>
+            <input class="w3-input w3-text-red" type="text" value.bind="user.firstname"></p>
+            <p>
+            <label class="w3-text-red">Last Name</label>
+            <input class="w3-input w3-text-red" type="text" value.bind="user.lastname"></p>
+            <p>
+            <label class="w3-text-red">Username</label>
+            <input class="w3-input w3-text-red" type="text" value.bind="user.username"></p>
+            <label class="w3-text-red">Password</label>
+            <input class="w3-input w3-text-red" type="password" value.bind="user.password"></p>
+            <label class="w3-text-red">Re-type Password</label>
+            <input class="w3-input w3-text-red" type="password" value.bind="password"></p>
+            <p>
+                <select class="w3-input w3-text-red" value.bind="user.type">
+                    <option value.bind="item.type" repeat.for="item of selectType">${item.description}</option>
+                </select>
+            </p>
+            <button class="w3-btn w3-blue-grey">Register</button>
+        </form>
+    </div>
+</template>

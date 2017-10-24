@@ -1,0 +1,31 @@
+<template>
+    <div class="w3-padding-16 frame-limit-50">
+        <form class="w3-container" submit.delegate="register()">
+            <p>
+                <select class="w3-input w3-text-black" value.bind="selectedSupplier" change.delegate="changeSupplier()">
+                    <option>Choose a supplier</option>
+                    <option value.bind="item.id" repeat.for="item of selectSupplier">${item.company}</option>
+                </select>
+            </p>
+            <p>
+                <select class="w3-input w3-text-black" value.bind="selectedProduct" change.delegate="chooseProduct()">
+                    <option>Choose product</option>
+                    <option value.bind="item.id" repeat.for="item of selectProduct">${item.description}</option>
+                </select>
+            </p>
+            <img id="imgProductPreview" src="${product.pic}" width="100" height="100" />
+            <p>
+            <label class="w3-text-black">Cost</label>
+            <input class="w3-input w3-text-black" type="text" value.bind="product.cost"></p>
+            <p>
+                <label class="w3-text-black">Quantity</label>
+                <input class="w3-input w3-text-black" type="text" value.bind="product.quantity">
+            </p>
+            
+            <p>
+            <label class="w3-text-black">Expiration Date</label>
+            <input class="w3-input w3-text-black" type="date" value.bind="product.expire_date"></p>
+            <button class="w3-btn w3-blue-grey">Register</button>
+        </form>
+    </div>
+</template>

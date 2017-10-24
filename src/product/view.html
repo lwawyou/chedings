@@ -1,0 +1,14 @@
+<template>
+    <require from="../ui-helper/php-format"></require>
+    <ul class="w3-ul w3-card-4 frame-limit-50">
+      <li class="w3-padding-16 w3-hover-gray" repeat.for="items of product">
+        <span click.delegate="" class="w3-right" show.bind="usertypeRights">
+            <button click.delegate="editProduct(items.id)">Edit</button>
+            <button click.delegate="deleteProduct(items.id)">Delete</button>
+        </span>
+        <img src="${items.pic}" class="w3-left w3-margin-right" style="width:50px;height:50px">
+        <span class="w3-large">${items.description}</span><br>
+        <span>Pin #: ${items.pin_number} | Price: ${items.cost | phpFormat} | Quantity: ${items.left_quantity}</span>
+      </li>
+    </ul>
+</template> 
